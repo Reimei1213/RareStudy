@@ -1,1 +1,1 @@
-# RareStudy-Aplication
+# RareStudy
