@@ -7,6 +7,36 @@ from .user import User
 class Comment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     body = models.CharField(max_length=1000)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
-    valid = models.BooleanField(default=False)
+    valid = models.BooleanField(default=True)
+
+    def get_id(self):
+        try:
+            return self.id
+        except:
+            return False
+
+    def get_body(self):
+        try:
+            return self.body
+        except:
+            return False
+
+    def get_user(self):
+        try:
+            return self.user
+        except:
+            return False
+
+    def get_created_at(self):
+        try:
+            return self.created_at
+        except:
+            return False
+
+    def get_valid(self):
+        try:
+            return self.valid
+        except:
+            return False
