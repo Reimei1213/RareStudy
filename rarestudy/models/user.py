@@ -51,6 +51,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
+    ## getter
     def get_id(self):
         try:
             return self.id
@@ -104,3 +105,31 @@ class User(AbstractBaseUser, PermissionsMixin):
             return self.valid
         except:
             return False
+
+    ## setter
+    def set_username(self, username):
+        if username is not None:
+            self.username = username
+
+    def set_email(self, email):
+        if email is not None:
+            self.email = email
+
+    def set_password(self, password):
+        if password is not None:
+            self.password = password
+
+    def set_icon_tag(self, icon_tag):
+        if icon_tag is not None:
+            self.icon_tag = icon_tag
+
+    def set_bio(self, bio):
+        if bio is not None:
+            self.bio = bio
+
+    def set_is_staff(self, is_staff):
+        if is_staff is not None:
+            self.is_staff = is_staff
+
+    def delete(self):
+        self.valid = 0
