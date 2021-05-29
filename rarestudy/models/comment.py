@@ -11,6 +11,7 @@ class Comment(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     valid = models.BooleanField(default=True)
 
+    ## getter
     def get_id(self):
         try:
             return self.id
@@ -40,3 +41,15 @@ class Comment(models.Model):
             return self.valid
         except:
             return False
+
+    ## setter
+    def set_body(self, body):
+        if body is not None:
+            self.body = body
+
+    def set_user(self, User):
+        if User is not None:
+            self.User = User
+
+    def delete(self):
+        self.valid = 0
