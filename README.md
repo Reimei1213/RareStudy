@@ -11,7 +11,7 @@
 ## 開発メンバー
 
 - [REIMEI](https://github.com/Reimei1213)
-
+- [RINA](https://github.com/Rinasham)
 
 
 ## 動作保証環境
