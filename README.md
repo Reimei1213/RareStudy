@@ -11,7 +11,7 @@
 ## 開発メンバー
 
 - [REIMEI](https://github.com/Reimei1213)
-
+- [Shiny-a](https://github.com/shiny-a)
 
 
 ## 動作保証環境
