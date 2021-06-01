@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=r6if%88vs(t9ry)0j*-p%y5jihmfo@px#067v37&wa$5jetzr'
+SECRET_KEY = 'django-insecure--k^wo#5!^)o@8tn6n9^-^333z=ekl#ckf2$np&ub#3_%-40bth'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rarestudy.apps.RarestudyConfig',
 ]
 
 MIDDLEWARE = [
@@ -100,14 +99,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'rarestudy.user'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'ja'
+LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Tokyo'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

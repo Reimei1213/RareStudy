@@ -1,1 +1,0 @@
-from rarestudy.views import homeView
