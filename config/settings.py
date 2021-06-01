@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import json
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,6 +20,29 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
+...
+if os.path.exists(os.path.join(BASE_DIR, 'secrets.json')):
+    with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
+        secrets = json.load(secrets_file)
+else:
+    print('secrets.json could not be found.')
+    quit()
+
+
+def get_secret(setting, secrets=secrets, is_optional=False): #  設定が見つからない場合にNoneを返したい場合にはis_optionalにTrueを設定
+    try:
+        secret = secrets[setting]
+        if secret:
+            return secret
+        else:
+            if is_optional:
+                return None
+            else:
+                print(f'Please set {setting} in secrets.json')
+                quit()
+    except KeyError:
+        print(f' Please set {setting} in secrets.json')
+        quit()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-=r6if%88vs(t9ry)0j*-p%y5jihmfo@px#067v37&wa$5jetzr'
@@ -76,8 +101,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': get_secret('DB_NAME'),
+        'USER': get_secret('DB_USER'),
+        'PASSWORD': get_secret('DB_PASSWORD'),
+        'HOST': 'rarestudy-db.cjs4w0auxrgb.us-east-2.rds.amazonaws.com',
+        'PORT': '3306',
+        'ATOMIC_REQUESTS': True,
     }
 }
 
