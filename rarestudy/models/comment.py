@@ -49,7 +49,7 @@ class Comment(models.Model):
 
     def set_user(self, User):
         if User is not None:
-            self.User = User
+            self.user = User
 
     def delete(self):
         self.valid = 0
