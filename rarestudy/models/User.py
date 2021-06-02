@@ -70,7 +70,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_name(self):
         try:
-            return self.username
+            return self.name
         except:
             return False
 
