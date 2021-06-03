@@ -1,23 +1,25 @@
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
+from django.contrib.auth.models import AbstractBaseUser, UserManager, PermissionsMixin
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django.core.mail import send_mail
 from django.utils import timezone
 import uuid
 
+
 class UserManager(UserManager):
-    def _create_user(self, username, email, password, **extra_fields):
+    def _create_user(self, email, password, **extra_fields):
         email = self.normalize_email(email)
-        user = self.model(username=username, email=email, **extra_fields)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_user(self, username, email, password=None, **extra_fields):
+    def create_user(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
-        return self._create_user(username, email, password, **extra_fields)
+        return self._create_user(email, password, **extra_fields)
 
-    def create_superuser(self, username, email, password, **extra_fields):
+    def create_superuser(self, email, password, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
@@ -25,23 +27,31 @@ class UserManager(UserManager):
             raise ValueError('Superuser must have is_staff=True.')
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
-        return self._create_user(username, email, password, **extra_fields)
+
+        return self._create_user(email, password, **extra_fields)
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)
-    username = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
     icon_tag = models.PositiveSmallIntegerField(default=0)
     bio = models.CharField(max_length=300, null=True)
     is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(default=timezone.now)
     valid = models.BooleanField(default=True)
+    date_joined = models.DateTimeField(default=timezone.now)
 
     objects = UserManager()
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+    class Meta:
+        verbose_name = _('user')
+        verbose_name_plural = _('users')
 
     def clean(self):
         super().clean()
@@ -51,16 +61,16 @@ class User(AbstractBaseUser, PermissionsMixin):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
-    ## getter
+## getter
     def get_id(self):
         try:
             return self.id
         except:
             return False
 
-    def get_username(self):
+    def get_name(self):
         try:
-            return self.username
+            return self.name
         except:
             return False
 
@@ -107,17 +117,13 @@ class User(AbstractBaseUser, PermissionsMixin):
             return False
 
     ## setter
-    def set_username(self, username):
-        if username is not None:
-            self.username = username
+    def set_name(self, name):
+        if name is not None:
+            self.name = name
 
     def set_email(self, email):
         if email is not None:
             self.email = email
-
-    def set_password(self, password):
-        if password is not None:
-            self.password = password
 
     def set_icon_tag(self, icon_tag):
         if icon_tag is not None:

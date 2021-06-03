@@ -1,1 +1,2 @@
-from rarestudy.views import homeView
+from rarestudy.views import topView
+from rarestudy.views import accountView

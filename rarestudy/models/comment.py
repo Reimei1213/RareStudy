@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 import uuid
 
-from .user import User
+from rarestudy.models.user import User
 
 class Comment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -49,7 +49,7 @@ class Comment(models.Model):
 
     def set_user(self, User):
         if User is not None:
-            self.User = User
+            self.user = User
 
     def delete(self):
         self.valid = 0
