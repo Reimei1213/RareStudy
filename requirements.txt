@@ -1,3 +1,3 @@
 Django==3.2.3
-MySQL-Client ==10.4.19-MariDB
+mysql-client==10.4.19-MariDB
 django-bootstrap==3.0.1

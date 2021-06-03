@@ -99,7 +99,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-<<<<<<< HEAD
         'ENGINE': 'django.db.backends.mysql',
         'NAME': get_secret('DB_NAME'),
         'USER': get_secret('DB_USER'),
@@ -107,10 +106,6 @@ DATABASES = {
         'HOST': 'rarestudy-db.cjs4w0auxrgb.us-east-2.rds.amazonaws.com',
         'PORT': '3306',
         'ATOMIC_REQUESTS': True,
-=======
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
->>>>>>> f3c8b0df5645e5baa35f6b98124964a8b10fdd26
     }
 }
 
