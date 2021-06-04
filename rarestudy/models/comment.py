@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 import uuid
 
-from rarestudy.models.User import User
+from rarestudy.models.user import User
 
 class Comment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
