@@ -136,3 +136,6 @@ dmypy.json
 
 # .vscode
 .vscode
+
+#secrets.json
+secrets.json

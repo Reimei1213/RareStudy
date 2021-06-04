@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils import timezone
 import uuid
-
 from rarestudy.models.user import User
 
 class Article(models.Model):
