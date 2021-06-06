@@ -116,6 +116,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         except:
             return False
 
+    def get_icon_path(self):
+        try:
+            return 'image/user_icon/icon_' + str(self.icon_tag) + '.png'
+        except:
+            return False
+
     ## setter
     def set_name(self, name):
         if name is not None:
