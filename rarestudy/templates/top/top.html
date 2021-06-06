@@ -2,6 +2,19 @@
 
 {% block body %}
 
-    <p>トップページ</p>
+
+
+{#    <div class="container">#}
+        {% for Article in Articles %}
+            <a href="" style="color:#333333;text-decoration:none;">
+                <div class="card my-2">
+                  <div class="card-body">
+                      <p>{{ Article.get_user.get_name }}</p>
+                      <p>{{ Article.get_title }}</p>
+                  </div>
+                </div>
+            </a>
+        {% endfor %}
+{#    </div>#}
 
 {% endblock %}
