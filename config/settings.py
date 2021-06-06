@@ -17,29 +17,29 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-...
-if os.path.exists(os.path.join(BASE_DIR, 'secrets.json')):
-    with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
-        secrets = json.load(secrets_file)
-else:
-    print('secrets.json could not be found.')
-    quit()
-
-
-def get_secret(setting, secrets=secrets, is_optional=False): #  設定が見つからない場合にNoneを返したい場合にはis_optionalにTrueを設定
-    try:
-        secret = secrets[setting]
-        if secret:
-            return secret
-        else:
-            if is_optional:
-                return None
-            else:
-                print(f'Please set {setting} in secrets.json')
-                quit()
-    except KeyError:
-        print(f' Please set {setting} in secrets.json')
-        quit()
+# ...
+# if os.path.exists(os.path.join(BASE_DIR, 'secrets.json')):
+#     with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
+#         secrets = json.load(secrets_file)
+# else:
+#     print('secrets.json could not be found.')
+#     quit()
+#
+#
+# def get_secret(setting, secrets=secrets, is_optional=False): #  設定が見つからない場合にNoneを返したい場合にはis_optionalにTrueを設定
+#     try:
+#         secret = secrets[setting]
+#         if secret:
+#             return secret
+#         else:
+#             if is_optional:
+#                 return None
+#             else:
+#                 print(f'Please set {setting} in secrets.json')
+#                 quit()
+#     except KeyError:
+#         print(f' Please set {setting} in secrets.json')
+#         quit()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@qjwy6%kiujc#%kb$y!ax=+!td%g-hqsee)!8qm(2p2e%ko2lb'
@@ -99,14 +99,18 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': get_secret('DB_NAME'),
-        'USER': get_secret('DB_USER'),
-        'PASSWORD': get_secret('DB_PASSWORD'),
-        'HOST': 'rarestudy-db.cjs4w0auxrgb.us-east-2.rds.amazonaws.com',
-        'PORT': '3306',
-        'ATOMIC_REQUESTS': True,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': get_secret('DB_NAME'),
+    #     'USER': get_secret('DB_USER'),
+    #     'PASSWORD': get_secret('DB_PASSWORD'),
+    #     'HOST': 'rarestudy-db.cjs4w0auxrgb.us-east-2.rds.amazonaws.com',
+    #     'PORT': '3306',
+    #     'ATOMIC_REQUESTS': True,
+    # }
 }
 
 
