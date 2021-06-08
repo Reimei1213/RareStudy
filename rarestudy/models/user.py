@@ -34,7 +34,7 @@ class UserManager(UserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, default='')
     icon_tag = models.PositiveSmallIntegerField(default=0)
     bio = models.CharField(max_length=300, null=True)
     is_staff = models.BooleanField(default=False)
@@ -126,22 +126,28 @@ class User(AbstractBaseUser, PermissionsMixin):
     def set_name(self, name):
         if name is not None:
             self.name = name
+            self.save()
 
     def set_email(self, email):
         if email is not None:
             self.email = email
+            self.save()
 
     def set_icon_tag(self, icon_tag):
         if icon_tag is not None:
             self.icon_tag = icon_tag
+            self.save()
 
     def set_bio(self, bio):
         if bio is not None:
             self.bio = bio
+            self.save()
 
     def set_is_staff(self, is_staff):
         if is_staff is not None:
             self.is_staff = is_staff
+            self.save()
 
     def delete(self):
-        self.valid = 0
+        self.valid = False
+        self.save()
