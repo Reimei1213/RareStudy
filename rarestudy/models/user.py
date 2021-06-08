@@ -34,7 +34,7 @@ class UserManager(UserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, default='')
     icon_tag = models.PositiveSmallIntegerField(default=0)
     bio = models.CharField(max_length=300, null=True)
     is_staff = models.BooleanField(default=False)
