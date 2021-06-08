@@ -126,22 +126,28 @@ class User(AbstractBaseUser, PermissionsMixin):
     def set_name(self, name):
         if name is not None:
             self.name = name
+            self.save()
 
     def set_email(self, email):
         if email is not None:
             self.email = email
+            self.save()
 
     def set_icon_tag(self, icon_tag):
         if icon_tag is not None:
             self.icon_tag = icon_tag
+            self.save()
 
     def set_bio(self, bio):
         if bio is not None:
             self.bio = bio
+            self.save()
 
     def set_is_staff(self, is_staff):
         if is_staff is not None:
             self.is_staff = is_staff
+            self.save()
 
     def delete(self):
-        self.valid = 0
+        self.valid = False
+        self.save()
