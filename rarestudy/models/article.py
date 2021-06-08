@@ -51,15 +51,19 @@ class Article(models.Model):
     ## setter
     def set_title(self, title):
         if title is not None:
-             self.title = title
+            self.title = title
+            self.save()
 
     def set_body(self, body):
         if body is not None:
             self.body = body
+            self.save()
 
     def set_user(self, User):
         if User is not None:
             self.user = User
+            self.save()
 
     def delete(self):
-        self.valid = 0
+        self.valid = False
+        self.save()
