@@ -2,21 +2,35 @@
 {% load static %}
 {% block body %}
 
-    {% for Article in Articles %}
-        <a href="{% url 'rarestudy:article/detail' Article.get_id %}" style="color:#333333;text-decoration:none;">
-            <div class="card my-2">
-                <div class="card-body mx-3">
-                    <div class="d-flex align-items-center">
-                        <img src="{% static Article.get_user.get_icon_path %}" alt="" width="40px" height="40px" class="mr-2">
-                        <p>{{ Article.get_user.get_name }}</p>
-                    </div>
-                    <p style="font-size:20px;">{{ Article.get_title }}</p>
-                    <p class="small text-secondary">{{ Article.get_created_at }}</p>
-                </div>
-            </div>
-        </a>
-    {% endfor %}
+    <style>
+        body{
+            background: #ededed;
+        }
+    </style>
 
-    {% include "pagenate.html" %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                {% for Article in Articles %}
+                    <a href="" style="color:#333333;text-decoration:none;">
+                        <div class="card my-4">
+                            <div class="card-body mx-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="{% static Article.get_user.get_icon_path %}" alt="" width="40px" height="40px" class="mr-2">
+                                    <p>{{ Article.get_user.get_name }}</p>
+                                </div>
+                                <p style="font-size:20px;">{{ Article.get_title }}</p>
+                                <p class="small text-secondary">{{ Article.get_created_at }}</p>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="py-4">
+        {% include "pagenate.html" %}
+    </div>
 
 {% endblock %}
