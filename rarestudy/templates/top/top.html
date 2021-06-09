@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 {% for Article in Articles %}
-                    <a href="" style="color:#333333;text-decoration:none;">
+                    <a href="{% url 'rarestudy:article/detail' Article.get_id %}" style="color:#333333;text-decoration:none;">
                         <div class="card my-4">
                             <div class="card-body mx-3">
                                 <div class="d-flex align-items-center">
