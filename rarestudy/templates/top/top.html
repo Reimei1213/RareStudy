@@ -3,7 +3,7 @@
 {% block body %}
 
     {% for Article in Articles %}
-        <a href="" style="color:#333333;text-decoration:none;">
+        <a href="{% url 'rarestudy:article/detail' Article.get_id %}" style="color:#333333;text-decoration:none;">
             <div class="card my-2">
                 <div class="card-body mx-3">
                     <div class="d-flex align-items-center">
