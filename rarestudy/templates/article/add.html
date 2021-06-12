@@ -8,12 +8,16 @@
         }
     </style>
 
-    <h5 class="card-title text-center">新規記事投稿</h5>
-    <form action="" method="POST">
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">投稿</button>
-        {% csrf_token %}
-    </form>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <form action="" method="POST">
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">投稿</button>
+                    {% csrf_token %}
+                </form>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
