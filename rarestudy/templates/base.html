@@ -17,10 +17,11 @@
 
         <nav class="my-2 my-md-0 mr-md-3 navbar navbar-expand navbar-light bg-secondary">
         {% if user.is_authenticated %}
-            <form class="form-inline">
+            <!-- <form class="form-inline">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            </form> -->
+            <a class="btn btn-info btn-sm mr-4">記事を書く</button>
             <a class="btn btn-outline-light btn-sm mr-2" href="{% url 'rarestudy:profile' %}">マイページ</a>
         {% else %}
             <a class="btn btn-outline-light btn-sm mr-2" href="{% url 'login' %}">ログイン</a>
