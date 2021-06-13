@@ -1,4 +1,5 @@
 from django.views.generic import DetailView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.contrib.auth import (
      get_user_model, logout as auth_logout,
@@ -8,12 +9,12 @@ from rarestudy.forms import AddArticleForm
 
 User = get_user_model()
 
-class Detail(DetailView):
+class Detail(LoginRequiredMixin, DetailView):
     template_name = 'article/detail.html'
     model = Article
     context_object_name = 'Article'
 
-class Add(CreateView):
+class Add(LoginRequiredMixin, CreateView):
     template_name = 'article/add.html'
     model = Article
     form_class = AddArticleForm
