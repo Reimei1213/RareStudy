@@ -26,6 +26,9 @@ class AddArticleForm(forms.ModelForm):
     class Meta:
         model = Article
         fields = ('title', 'body')
+        widgets = {
+            'title' : forms.TextInput(attrs={'placeholder': 'タイトル'})
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
