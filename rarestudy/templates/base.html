@@ -33,7 +33,7 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form> -->
             <a class="button btn btn-outline-light btn-sm mr-4"  href="{% url 'rarestudy:article/add' %}">記事を書く</button>
-            <a href="{% url 'rarestudy:profile' %}"><img src="{% static Article.get_user.get_icon_path %}" class="img-circle" width="40px" height="40px"></a>
+            <a href="{% url 'rarestudy:profile' %}"><img src="{% static user.get_icon_path %}" class="img-circle" alt="マイページ" width="40px" height="40px"></a>
         {% else %}
             <a class="button btn btn-outline-light btn-sm mr-2"  href="{% url 'login' %}">ログイン</a>
             <a class="button btn btn-outline-light btn-sm"  href="{% url 'rarestudy:signup' %}">入会</a>
