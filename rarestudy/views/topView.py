@@ -1,4 +1,5 @@
 from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import (
      get_user_model, logout as auth_logout,
 )
@@ -7,7 +8,7 @@ from rarestudy.models.article import Article
 User = get_user_model()
 
 
-class Top(ListView):
+class Top(LoginRequiredMixin, ListView):
     template_name = 'top/top.html'
     model = Article
     paginate_by = 10
