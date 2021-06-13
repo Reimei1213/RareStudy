@@ -14,5 +14,6 @@ urlpatterns = [
     path('delete_confirm', TemplateView.as_view(template_name='registration/delete_confirm.html'), name='delete-confirmation'),
     path('delete_complete', accountView.DeleteView.as_view(), name='delete-complete'),
 
-    path('article/<uuid:pk>/', articleView.Detail.as_view(), name='article/detail')
+    path('article/<uuid:pk>/', articleView.Detail.as_view(), name='article/detail'),
+    path('article/add/', articleView.Add.as_view(), name='article/add')
 ]
