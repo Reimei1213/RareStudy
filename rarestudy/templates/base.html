@@ -10,19 +10,21 @@
     <link href="{% static "css/custom.css" %}" rel="stylesheet" />
     <title>django-account</title>
     <style>
-         .header{
+        .header{
             background: linear-gradient( #005FFF,#C2EEFF);
-            #background-color: #005FFF;
         }
         .button{
             color: #FFFAFA;
+        }
+        .logo{
+            color:#FFFAFA
         }
     </style>
 </head>
 <body>
 {% block header %}
     <div class="header text-white d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm">
-        <h4 class="my-0 mr-md-auto font-weight-bold text-muted"><a href="{% url 'rarestudy:top' %}">RareStudy</a></h4>
+        <h4 class="logo my-0 mr-md-auto font-weight-bold text-muted"><a href="{% url 'rarestudy:top' %}">RareStudy</a></h4>
 
         <nav class="navbar my-2 my-md-0 mr-md-3 navbar navbar-expand navbar-light">
         {% if user.is_authenticated %}
