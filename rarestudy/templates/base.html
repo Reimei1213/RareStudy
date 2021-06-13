@@ -28,7 +28,7 @@
 <body>
 {% block header %}
     <div class="header text-white d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm">
-        <a class="logo my-0 mr-md-auto font-weight-bold" href="{% url 'rarestudy:top' %}">RareStudy</a>
+        <a class="logo my-0 mr-md-auto font-weight-bold" style="text-decoration:none;" href="{% url 'rarestudy:top' %}">RareStudy</a>
 
         <nav class="navbar my-2 my-md-0 mr-md-3 navbar navbar-expand navbar-light">
         {% if user.is_authenticated %}
