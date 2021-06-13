@@ -5,8 +5,8 @@ from rarestudy.models.user import User
 
 class Article(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=100)
-    body = models.CharField(max_length=10000)
+    title = models.CharField(max_length=100, verbose_name='タイトル')
+    body = models.TextField(max_length=10000, verbose_name='内容')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
     valid = models.BooleanField(default=True)
