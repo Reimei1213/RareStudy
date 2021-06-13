@@ -27,10 +27,6 @@ class AddArticleForm(forms.ModelForm):
         model = Article
         fields = ('title', 'body')
 
-        widgets = {
-            'body': forms.Textarea(attrs={'rows': 14}),
-        }
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
