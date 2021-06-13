@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="{% static "css/custom.css" %}" rel="stylesheet" />
-    <title>django-account</title>
+    <title>RareStudy</title>
     <style>
         .header{
             background: linear-gradient( #005FFF,#C2EEFF);
@@ -17,6 +17,10 @@
             color: #FFFAFA;
         }
         .logo{
+            color:#FFFAFA;
+            font-size: 30pt;
+        }
+        .img-circle{
             color:#FFFAFA
         }
     </style>
@@ -24,7 +28,7 @@
 <body>
 {% block header %}
     <div class="header text-white d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm">
-        <h4 class="logo my-0 mr-md-auto font-weight-bold text-muted"><a href="{% url 'rarestudy:top' %}">RareStudy</a></h4>
+        <a class="logo my-0 mr-md-auto font-weight-bold" href="{% url 'rarestudy:top' %}">RareStudy</a>
 
         <nav class="navbar my-2 my-md-0 mr-md-3 navbar navbar-expand navbar-light">
         {% if user.is_authenticated %}
