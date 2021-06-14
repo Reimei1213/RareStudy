@@ -6,23 +6,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="{% static "css/custom.css" %}" rel="stylesheet" />
-    <title>django-account</title>
+    <title>RareStudy</title>
+    <style>
+        .header{
+            background: linear-gradient( #005FFF,#C2EEFF);
+        }
+        .btn{
+            color: #FFFAFA;
+        }
+        .logo{
+            color:#FFFAFA;
+            font-size: 30pt;
+        }
+        .img-circle{
+            color:#FFFAFA
+        }
+    </style>
 </head>
 <body>
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-normal"><a href="{% url 'rarestudy:top' %}">django-account</a></h5>
+{% block header %}
+    <div class="header text-white d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm">
+        <a class="logo my-0 mr-md-auto font-weight-bold" style="text-decoration:none;" href="{% url 'rarestudy:top' %}">RareStudy</a>
 
-    <nav class="my-2 my-md-0 mr-md-3">
-    {% if user.is_authenticated %}
-        <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'rarestudy:profile' %}">マイページ</a>
-    {% else %}
-        <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'login' %}">ログイン</a>
-        <a class="btn btn-outline-primary btn-sm" href="{% url 'rarestudy:signup' %}">入会</a>
-    {% endif %}
-    </nav>
-</div>
+        <nav class="navbar my-2 my-md-0 mr-md-3 navbar navbar-expand navbar-light">
+        {% if user.is_authenticated %}
+            <!-- <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+            <a class="btn btn-outline-light btn-sm mr-4"  href="{% url 'rarestudy:article/add' %}">記事を書く</a>
+            <a href="{% url 'rarestudy:profile' %}"><img src="{% static user.get_icon_path %}" class="img-circle" alt="マイページ" width="40px" height="40px"></a>
+        {% else %}
+            <a class="btn btn-outline-light btn-sm mr-2"  href="{% url 'login' %}">ログイン</a>
+            <a class="btn btn-outline-light btn-sm"  href="{% url 'rarestudy:signup' %}">入会</a>
+        {% endif %}
+        </nav>
+    </div>
+{% endblock header %}
 
 <div class="container mt-3">
     {% block body %}{% endblock %}
