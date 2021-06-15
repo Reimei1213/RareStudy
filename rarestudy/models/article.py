@@ -1,12 +1,13 @@
 from django.db import models
 from django.utils import timezone
 import uuid
+from mdeditor.fields import MDTextField
 from rarestudy.models.user import User
 
 class Article(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=100, verbose_name='タイトル')
-    body = models.TextField(max_length=10000, verbose_name='内容')
+    body = MDTextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
     valid = models.BooleanField(default=True)
