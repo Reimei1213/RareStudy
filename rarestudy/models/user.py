@@ -49,6 +49,28 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
+    DEGREE_BEGINNER_INDEX = 0
+    DEGREE_INTERMEDIATE_INDEX = 1
+    DEGREE_SENIOR_INDEX = 2
+    DEGREE_MASTER_INDEX = 3
+    DEGREE_EXPERT_INDEX = 4
+
+    DEGREE_BEGINNER = '駆け出しエンジニア'
+    DEGREE_INTERMEDIATE = '中級エンジニア'
+    DEGREE_SENIOR = '上級エンジニア'
+    DEGREE_MASTER = '達人エンジニア'
+    DEGREE_EXPERT = '玄人エンジニア'
+
+    DEGREE_ARRAY = {
+        DEGREE_BEGINNER_INDEX : DEGREE_BEGINNER,
+        DEGREE_INTERMEDIATE_INDEX : DEGREE_INTERMEDIATE,
+        DEGREE_SENIOR_INDEX : DEGREE_SENIOR,
+        DEGREE_MASTER_INDEX : DEGREE_MASTER,
+        DEGREE_EXPERT_INDEX : DEGREE_EXPERT
+    }
+
+    __article_num = None
+
     class Meta:
         verbose_name = _('user')
         verbose_name_plural = _('users')
@@ -119,6 +141,31 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_icon_path(self):
         try:
             return 'image/user_icon/icon_' + str(self.icon_tag) + '.png'
+        except:
+            return False
+
+    def __get_article_num(self):
+        try:
+            if self.__article_num is None:
+                self.__article_num = self.Articles.all()
+            return len(self.__article_num)
+        except:
+            return False
+
+    def get_degree(self):
+        try:
+            article_num = self.__get_article_num()
+            if article_num >= 100:
+                degree_index = self.DEGREE_EXPERT_INDEX
+            elif article_num >= 50:
+                degree_index = self.DEGREE_MASTER_INDEX
+            elif article_num >= 30:
+                degree_index = self.DEGREE_SENIOR_INDEX
+            elif article_num >= 10:
+                degree_index = self.DEGREE_INTERMEDIATE_INDEX
+            else:
+                degree_index = self.DEGREE_BEGINNER_INDEX
+            return self.DEGREE_ARRAY[degree_index]
         except:
             return False
 
