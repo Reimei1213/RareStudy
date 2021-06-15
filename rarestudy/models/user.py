@@ -152,20 +152,23 @@ class User(AbstractBaseUser, PermissionsMixin):
         except:
             return False
 
+    def __get_degree_index(self):
+        article_num = self.__get_article_num()
+        if article_num >= 100:
+            degree_index = self.DEGREE_EXPERT_INDEX
+        elif article_num >= 50:
+            degree_index = self.DEGREE_MASTER_INDEX
+        elif article_num >= 30:
+            degree_index = self.DEGREE_SENIOR_INDEX
+        elif article_num >= 10:
+            degree_index = self.DEGREE_INTERMEDIATE_INDEX
+        else:
+            degree_index = self.DEGREE_BEGINNER_INDEX
+        return degree_index
+
     def get_degree(self):
         try:
-            article_num = self.__get_article_num()
-            if article_num >= 100:
-                degree_index = self.DEGREE_EXPERT_INDEX
-            elif article_num >= 50:
-                degree_index = self.DEGREE_MASTER_INDEX
-            elif article_num >= 30:
-                degree_index = self.DEGREE_SENIOR_INDEX
-            elif article_num >= 10:
-                degree_index = self.DEGREE_INTERMEDIATE_INDEX
-            else:
-                degree_index = self.DEGREE_BEGINNER_INDEX
-            return self.DEGREE_ARRAY[degree_index]
+            return self.DEGREE_ARRAY[self.__get_degree_index()]
         except:
             return False
 
