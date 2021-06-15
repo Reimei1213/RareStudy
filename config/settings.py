@@ -42,11 +42,6 @@ def get_secret(setting, secrets=secrets, is_optional=False): #  設定が見つ�
         print(f' Please set {setting} in secrets.json')
         quit()
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@qjwy6%kiujc#%kb$y!ax=+!td%g-hqsee)!8qm(2p2e%ko2lb'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
