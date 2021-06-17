@@ -25,7 +25,7 @@ class ProfileView(LoginRequiredMixin, generic.ListView):
     context_object_name = 'Articles'
 
     def get_queryset(self):
-        return Article.objects.filter(user=self.request.user)
+        return Article.objects.filter(user=self.request.user).filter(valid=True).order_by('-created_at')
 
 class DeleteView(LoginRequiredMixin, generic.View):
 
