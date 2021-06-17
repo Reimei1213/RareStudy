@@ -23,6 +23,7 @@ class ProfileView(LoginRequiredMixin, generic.ListView):
     model = Article
     template_name = 'registration/profile.html'
     context_object_name = 'Articles'
+    paginate_by = 10
 
     def get_queryset(self):
         return Article.objects.filter(user=self.request.user).filter(valid=True).order_by('-created_at')
