@@ -3,11 +3,13 @@ from django.utils import timezone
 import uuid
 
 from rarestudy.models.user import User
+from rarestudy.models.article import Article
 
 class Comment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    body = models.CharField(max_length=1000)
+    body = models.TextField(max_length=1000)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='Comments')
     created_at = models.DateTimeField(default=timezone.now)
     valid = models.BooleanField(default=True)
 
@@ -27,6 +29,12 @@ class Comment(models.Model):
     def get_user(self):
         try:
             return self.user
+        except:
+            return False
+
+    def get_article(self):
+        try:
+            return self.article
         except:
             return False
 
@@ -51,6 +59,11 @@ class Comment(models.Model):
     def set_user(self, User):
         if User is not None:
             self.user = User
+            self.save()
+
+    def set_article(self, Article):
+        if Article is not None:
+            self.article = Article
             self.save()
 
     def delete(self):

@@ -12,6 +12,8 @@ class Article(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     valid = models.BooleanField(default=True)
 
+    __Comments = None
+
     ## getter
     def get_id(self):
         try:
@@ -46,6 +48,14 @@ class Article(models.Model):
     def get_valid(self):
         try:
             return self.valid
+        except:
+            return False
+
+    def __get_comments(self):
+        try:
+            if self.__Comments is None:
+                self.__Comments = self.Comments.all()
+            return self.__Comments
         except:
             return False
 
