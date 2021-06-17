@@ -16,5 +16,6 @@ urlpatterns = [
     path('delete_complete', accountView.DeleteView.as_view(), name='delete-complete'),
 
     path('article/<uuid:pk>/', articleView.Detail.as_view(), name='article/detail'),
-    path('article/add/', articleView.Add.as_view(), name='article/add')
+    path('article/add/', articleView.Add.as_view(), name='article/add'),
+    path('article/update/<int:pk>/', articleView.Update.as_view(), name='article/update')
 ]
