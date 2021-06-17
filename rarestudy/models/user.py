@@ -32,11 +32,31 @@ class UserManager(UserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+
+    ICONTAG_ARRAY = (
+        (0, '🐻'),
+        (1, '🐶'),
+        (2, '🐱'),
+        (3, '🐘'),
+        (4, '🐴'),
+        (5, '🦁'),
+        (6, '🦛'),
+        (7, '🐯'),
+        (8, '🐼'),
+        (9, '🐵'),
+        (10, '🐧'),
+        (11, '🐏'),
+        (12, '🐨'),
+        (13, '🐿'),
+        (14, '🐰'),
+        (15, '🐷'),
+    )
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=50, default='')
-    icon_tag = models.PositiveSmallIntegerField(default=0)
-    bio = models.CharField(max_length=300, null=True)
+    icon_tag = models.PositiveSmallIntegerField(default=0, choices=ICONTAG_ARRAY)
+    bio = models.TextField(max_length=300, null=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(default=timezone.now)
