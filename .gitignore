@@ -139,3 +139,5 @@ dmypy.json
 
 #secrets.json
 secrets.json
+
+local_settings.py
