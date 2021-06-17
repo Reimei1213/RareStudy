@@ -12,7 +12,28 @@
             <th scope="row">入会日</th>
             <td>{{ user.date_joined }}</td>
         </tr>
+        <tr>
+            <th scope="row">自己紹介</th>
+            <td>{{ user.get_bio }}</td>
+        </tr>
         </tbody>
     </table>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                {% for Article in Articles %}
+                    <a href="{% url 'rarestudy:article/detail' Article.get_id %}" style="color:#333333;text-decoration:none;">
+                        <div class="card my-4">
+                            <div class="card-body mx-3">
+                                <p style="font-size:20px;">{{ Article.get_title }}</p>
+                                <p class="small text-secondary">{{ Article.get_created_at }}</p>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
