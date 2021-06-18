@@ -17,9 +17,6 @@ class SignUpView(generic.CreateView):
 
 
 class ProfileView(LoginRequiredMixin, generic.ListView):
-
-    # def get(self, *args, **kwargs):
-    #     return render(self.request,'registration/profile.html')
     model = Article
     template_name = 'registration/profile.html'
     context_object_name = 'Articles'
