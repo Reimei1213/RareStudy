@@ -33,7 +33,7 @@
                         </div>
                     {% endfor %}
                 {% endif %}
-                <a href="{% url 'rarestudy:article/add_comment' Article.pk %}" class="btn btn-primary mb-3">コメントする</a>
+                <a href="{% url 'rarestudy:comment/add' Article.pk %}" class="btn btn-primary mb-3">コメントする</a>
             </div>
         </div>
     </div>
