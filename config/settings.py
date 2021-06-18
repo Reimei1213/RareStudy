@@ -43,7 +43,6 @@ def get_secret(setting, secrets=secrets, is_optional=False): #  設定が見つ�
         quit()
 
 
-
 ALLOWED_HOSTS = ['*']
 
 
