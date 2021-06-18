@@ -34,3 +34,14 @@ class AddArticleForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
+
+class EditUserForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ('name', 'icon_tag','bio')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'

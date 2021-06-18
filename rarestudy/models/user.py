@@ -32,11 +32,31 @@ class UserManager(UserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+
+    ICONTAG_ARRAY = (
+        (0, '🐻'),
+        (1, '🐶'),
+        (2, '🐱'),
+        (3, '🐘'),
+        (4, '🐴'),
+        (5, '🦁'),
+        (6, '🦛'),
+        (7, '🐯'),
+        (8, '🐼'),
+        (9, '🐵'),
+        (10, '🐧'),
+        (11, '🐏'),
+        (12, '🐨'),
+        (13, '🐿'),
+        (14, '🐰'),
+        (15, '🐷'),
+    )
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=50, default='')
-    icon_tag = models.PositiveSmallIntegerField(default=0)
-    bio = models.CharField(max_length=300, null=True)
+    icon_tag = models.PositiveSmallIntegerField(default=0, choices=ICONTAG_ARRAY)
+    bio = models.TextField(max_length=300, null=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(default=timezone.now)
@@ -48,6 +68,28 @@ class User(AbstractBaseUser, PermissionsMixin):
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+    DEGREE_BEGINNER_INDEX = 0
+    DEGREE_INTERMEDIATE_INDEX = 1
+    DEGREE_SENIOR_INDEX = 2
+    DEGREE_MASTER_INDEX = 3
+    DEGREE_EXPERT_INDEX = 4
+
+    DEGREE_BEGINNER = '駆け出しエンジニア'
+    DEGREE_INTERMEDIATE = '中級エンジニア'
+    DEGREE_SENIOR = '上級エンジニア'
+    DEGREE_MASTER = '達人エンジニア'
+    DEGREE_EXPERT = '玄人エンジニア'
+
+    DEGREE_ARRAY = {
+        DEGREE_BEGINNER_INDEX : DEGREE_BEGINNER,
+        DEGREE_INTERMEDIATE_INDEX : DEGREE_INTERMEDIATE,
+        DEGREE_SENIOR_INDEX : DEGREE_SENIOR,
+        DEGREE_MASTER_INDEX : DEGREE_MASTER,
+        DEGREE_EXPERT_INDEX : DEGREE_EXPERT
+    }
+
+    __article_num = None
 
     class Meta:
         verbose_name = _('user')
@@ -119,6 +161,34 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_icon_path(self):
         try:
             return 'image/user_icon/icon_' + str(self.icon_tag) + '.png'
+        except:
+            return False
+
+    def __get_article_num(self):
+        try:
+            if self.__article_num is None:
+                self.__article_num = self.Articles.all()
+            return len(self.__article_num)
+        except:
+            return False
+
+    def __get_degree_index(self):
+        article_num = self.__get_article_num()
+        if article_num >= 100:
+            degree_index = self.DEGREE_EXPERT_INDEX
+        elif article_num >= 50:
+            degree_index = self.DEGREE_MASTER_INDEX
+        elif article_num >= 30:
+            degree_index = self.DEGREE_SENIOR_INDEX
+        elif article_num >= 10:
+            degree_index = self.DEGREE_INTERMEDIATE_INDEX
+        else:
+            degree_index = self.DEGREE_BEGINNER_INDEX
+        return degree_index
+
+    def get_degree(self):
+        try:
+            return self.DEGREE_ARRAY[self.__get_degree_index()]
         except:
             return False
 
