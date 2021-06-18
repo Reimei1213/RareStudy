@@ -17,11 +17,13 @@
                         <div class="d-flex align-items-center">
                             <img src="{% static Article.get_user.get_icon_path %}" alt="" width="40px" height="40px" class="mr-2">
                             <p>{{ Article.get_user.get_name }}</p>
-                            <div class="float-right">
-                                <a href="{% url 'rarestudy:article/edit' Article.pk %}">編集</a>
-                            </div>
                         </div>
                     </a>
+                    <div class="float-right">
+                        <div class="edit">
+                             <a class="btn btn-primary mb-3" href="{% url 'rarestudy:article/edit' Article.pk %}">編集</a>
+                        </div>
+                    </div>
                     <p class="small text-secondary">{{ Article.get_created_at }}</p>
                 </div>
                 <p>{{ Article.get_body | markdown | safe }}</p>
