@@ -10,7 +10,7 @@ from rarestudy.forms import AddArticleForm, AddCommentForm
 
 User = get_user_model()
 
-class Detail(LoginRequiredMixin, DetailView, CreateView):
+class Detail(LoginRequiredMixin, DetailView):
     template_name = 'article/detail.html'
     model = Article
     context_object_name = 'Article'
