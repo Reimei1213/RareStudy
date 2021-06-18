@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django import forms
 
 from rarestudy.models.article import Article
+from rarestudy.models.comment import Comment
 
 User = get_user_model()
 
@@ -40,6 +41,20 @@ class EditUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('name', 'icon_tag','bio')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+class AddCommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ('body',)
+        widgets = {
+            'body': forms.Textarea(attrs={'rows': 4, 'cols': 15}),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

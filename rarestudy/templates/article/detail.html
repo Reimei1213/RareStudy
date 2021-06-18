@@ -22,6 +22,20 @@
                     <p class="small text-secondary">{{ Article.get_created_at }}</p>
                 </div>
                 <p>{{ Article.get_body | markdown | safe }}</p>
+                <div>
+                    {% if Article.get_comments %}
+                        {% for Comment in Article.get_comments %}
+                            <p>{{ Comment.get_body }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div>
+                    <form action="" method="POST">
+                        <p>{{ form.body }}</p>
+                        <button type="submit" class="btn btn-primary mb-3">投稿</button>
+                        {% csrf_token %}
+                    </form>
+                </div>
             </div>
         </div>
     </div>

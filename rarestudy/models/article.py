@@ -51,10 +51,10 @@ class Article(models.Model):
         except:
             return False
 
-    def __get_comments(self):
+    def get_comments(self):
         try:
             if self.__Comments is None:
-                self.__Comments = self.Comments.all()
+                self.__Comments = self.Comments.filter(valid=True).order_by('created_at')
             return self.__Comments
         except:
             return False
