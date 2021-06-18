@@ -9,8 +9,9 @@
                     {{ form.media }}
                     <p>{{ form.title }}</p>
                     <p>{{ form.body }}</p>
-                    <button type="submit" class="btn btn-primary mb-3">更新</button>
-                    {% csrf_token %}
+                        {% csrf_token %}
+                        <p><button type="submit">更新</button></p>
+                    </from>
                 </form>
             </div>
         </div>

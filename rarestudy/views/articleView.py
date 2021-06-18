@@ -1,10 +1,11 @@
+from os import terminal_size
+from django.http.response import Http404
+from django.shortcuts import redirect
 from django.views.generic import DetailView, CreateView,UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from django.contrib.auth import (
-     get_user_model, logout as auth_logout,
-)
-from django.views.generic.edit import UpdateView
+from django.contrib.auth import (get_user_model, logout as auth_logout,)
+from rarestudy.models import article
 from rarestudy.models.article import Article
 from rarestudy.forms import AddArticleForm
 
@@ -27,10 +28,15 @@ class Add(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse('rarestudy:article/detail', kwargs={'pk':self.object.pk})
 
-class Update(UpdateView):
-    template_name = 'article/update.html'
+
+class Edit(UpdateView):
+    template_name = 'article/edit.html'
     model = Article
     form_class = AddArticleForm
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
     def get_success_url(self):
-        return reverse('rarestudy:article/detail', kwargs={'pk':self.object.pk})
+        return reverse('rarestudy:article/detail', kwargs={'pk':self.object.id})

@@ -18,7 +18,7 @@
                             <img src="{% static Article.get_user.get_icon_path %}" alt="" width="40px" height="40px" class="mr-2">
                             <p>{{ Article.get_user.get_name }}</p>
                             <div class="float-right">
-                                <a href="{% url 'rarestudy:article/update' article.pk %}">編集</a>
+                                <a href="{% url 'rarestudy:article/edit' Article.pk %}">編集</a>
                             </div>
                         </div>
                     </a>
