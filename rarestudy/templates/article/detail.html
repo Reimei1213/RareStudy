@@ -3,11 +3,6 @@
 {% load static %}
 {% block body %}
 
-    <style>
-        body{
-            background: #ededed;
-        }
-    </style>
     <div class="container pt-4">
         <div class="row">
             <div class="col-lg-10 mx-auto p-4" style="background: #fdfdfd;">
@@ -15,27 +10,30 @@
                 <div class="pb-4">
                     <a href="#" style="color:#333333;text-decoration:none;">
                         <div class="d-flex align-items-center">
-                            <img src="{% static Article.get_user.get_icon_path %}" alt="" width="40px" height="40px" class="mr-2">
-                            <p>{{ Article.get_user.get_name }}</p>
+                            <img src="{% static Article.get_user_icon_path %}" alt="" width="40px" height="40px" class="mr-2">
+                            <p>{{ Article.get_user_name }}</p>
                         </div>
                     </a>
                     <p class="small text-secondary">{{ Article.get_created_at }}</p>
                 </div>
                 <p>{{ Article.get_body | markdown | safe }}</p>
-                <div>
-                    {% if Article.get_comments %}
-                        {% for Comment in Article.get_comments %}
-                            <p>{{ Comment.get_body }}</p>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                <div>
-                    <form action="" method="POST">
-                        <p>{{ form.body }}</p>
-                        <button type="submit" class="btn btn-primary mb-3">投稿</button>
-                        {% csrf_token %}
-                    </form>
-                </div>
+            </div>
+            <div class="col-lg-10 mx-auto">
+                {% if Article.get_comments %}
+                    {% for Comment in Article.get_comments %}
+                        <div class="card my-4">
+                            <div class="card-body mx-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="{% static Comment.get_user_icon_path %}" alt="" width="40px" height="40px" class="mr-2">
+                                    <p>{{ Comment.get_user_name }}</p>
+                                </div>
+                                <p class="small text-secondary">{{ Comment.get_created_at }}</p>
+                                <p>{{ Comment.get_body | markdown | safe }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <a href="{% url 'rarestudy:article/add_comment' Article.pk %}" class="btn btn-primary mb-3">コメントする</a>
             </div>
         </div>
     </div>

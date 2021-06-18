@@ -52,9 +52,6 @@ class AddCommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('body',)
-        widgets = {
-            'body': forms.Textarea(attrs={'rows': 4, 'cols': 15}),
-        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from mdeditor.fields import MDTextField
 import uuid
 
 from rarestudy.models.user import User
@@ -7,11 +8,14 @@ from rarestudy.models.article import Article
 
 class Comment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    body = models.TextField(max_length=1000)
+    body = MDTextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='Comments')
     created_at = models.DateTimeField(default=timezone.now)
     valid = models.BooleanField(default=True)
+
+    __user_name = None
+    __user_icon_path = None
 
     ## getter
     def get_id(self):
@@ -47,6 +51,30 @@ class Comment(models.Model):
     def get_valid(self):
         try:
             return self.valid
+        except:
+            return False
+
+    def get_user_name(self):
+        try:
+            if self.__user_name is None:
+                User = self.get_user()
+                if User:
+                    self.__user_name = User.get_name()
+                else:
+                    return False
+            return self.__user_name
+        except:
+            return False
+
+    def get_user_icon_path(self):
+        try:
+            if self.__user_icon_path is None:
+                user = self.get_user()
+                if user:
+                    self.__user_icon_path = user.get_icon_path()
+                else:
+                    return False
+            return self.__user_icon_path
         except:
             return False
 

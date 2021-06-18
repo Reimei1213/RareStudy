@@ -5,6 +5,7 @@ from django.contrib.auth import (
      get_user_model, logout as auth_logout,
 )
 from rarestudy.models.article import Article
+from rarestudy.models.comment import Comment
 from rarestudy.forms import AddArticleForm, AddCommentForm
 
 User = get_user_model()
@@ -14,16 +15,6 @@ class Detail(LoginRequiredMixin, DetailView, CreateView):
     model = Article
     context_object_name = 'Article'
     form_class = AddCommentForm
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        form.instance.article = self.object
-        return super().form_valid(form)
-
-    def get_initial(self):
-        initial = super().get_initial()
-        initial["body"] = ""
-        return initial
 
     def get_success_url(self):
         return reverse('rarestudy:article/detail', kwargs={'pk':self.object.pk})
@@ -39,3 +30,16 @@ class Add(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('rarestudy:article/detail', kwargs={'pk':self.object.pk})
+
+class AddComment(LoginRequiredMixin, CreateView):
+    template_name = 'article/add_comment.html'
+    model = Comment
+    form_class = AddCommentForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.article = Article.objects.get(pk=self.kwargs['pk'])
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('rarestudy:article/detail', kwargs={'pk':self.kwargs['pk']})
