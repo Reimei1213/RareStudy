@@ -8,7 +8,10 @@
                 <form action="" method="POST">
                     {{ form.media }}
                     <p>{{ form.body }}</p>
-                    <button type="submit" class="btn btn-primary mb-3">コメントする</button>
+                    <button type="submit" class="btn btn-primary mb-3">
+                        <i class="far fa-comment-dots"></i>
+                        コメントする
+                    </button>
                     {% csrf_token %}
                 </form>
             </div>
