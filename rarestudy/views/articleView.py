@@ -14,6 +14,9 @@ class Detail(LoginRequiredMixin, DetailView):
     model = Article
     context_object_name = 'Article'
 
+    def get_success_url(self):
+        return reverse('rarestudy:article/detail', kwargs={'pk':self.object.pk})
+
 class Add(LoginRequiredMixin, CreateView):
     template_name = 'article/add.html'
     model = Article
