@@ -15,11 +15,9 @@
                         </div>
                     </a>
                     <div class="float-right">
-                        <div class="edit">
                              {% if Article.get_user == user %}
                              <a class="btn btn-primary mb-3" href="{% url 'rarestudy:article/edit' Article.pk %}">編集</a>
                              {% endif %}
-                        </div>
                     </div>
                     <p class="small text-secondary">{{ Article.get_created_at }}</p>
                 </div>
