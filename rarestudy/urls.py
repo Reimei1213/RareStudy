@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from rarestudy.views import topView
 from rarestudy.views import accountView
 from rarestudy.views import articleView
+from rarestudy.views import commentView
 
 app_name = 'rarestudy'
 
@@ -15,5 +16,6 @@ urlpatterns = [
     path('delete_complete', accountView.DeleteView.as_view(), name='delete-complete'),
     path('article/<uuid:pk>/', articleView.Detail.as_view(), name='article/detail'),
     path('article/add/', articleView.Add.as_view(), name='article/add'),
-    path('article/edit/<uuid:pk>/', articleView.Edit.as_view(), name='article/edit')
+    path('article/edit/<uuid:pk>/', articleView.Edit.as_view(), name='article/edit'),
+    path('comment/add/<uuid:pk>', commentView.Add.as_view(), name='comment/add')
 ]

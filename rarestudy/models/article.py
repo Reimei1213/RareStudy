@@ -12,6 +12,10 @@ class Article(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     valid = models.BooleanField(default=True)
 
+    __Comments = None
+    __user_name = None
+    __user_icon_path = None
+
     ## getter
     def get_id(self):
         try:
@@ -46,6 +50,38 @@ class Article(models.Model):
     def get_valid(self):
         try:
             return self.valid
+        except:
+            return False
+
+    def get_comments(self):
+        try:
+            if self.__Comments is None:
+                self.__Comments = self.Comments.filter(valid=True).order_by('created_at')
+            return self.__Comments
+        except:
+            return False
+
+    def get_user_name(self):
+        try:
+            if self.__user_name is None:
+                User = self.get_user()
+                if User:
+                    self.__user_name = User.get_name()
+                else:
+                    return False
+            return self.__user_name
+        except:
+            return False
+
+    def get_user_icon_path(self):
+        try:
+            if self.__user_icon_path is None:
+                User = self.get_user()
+                if User:
+                    self.__user_icon_path = User.get_icon_path()
+                else:
+                    return False
+            return self.__user_icon_path
         except:
             return False
 

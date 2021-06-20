@@ -10,8 +10,8 @@
                         <div class="card my-4">
                             <div class="card-body mx-3">
                                 <div class="d-flex align-items-center">
-                                    <img src="{% static Article.get_user.get_icon_path %}" alt="" width="40px" height="40px" class="mr-2">
-                                    <p>{{ Article.get_user.get_name }}</p>
+                                    <img src="{% static Article.get_user_icon_path %}" alt="" width="40px" height="40px" class="mr-2">
+                                    <p>{{ Article.get_user_name }}</p>
                                 </div>
                                 <p style="font-size:20px;">{{ Article.get_title }}</p>
                                 <p class="small text-secondary">{{ Article.get_created_at }}</p>

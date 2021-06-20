@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import (
      get_user_model, logout as auth_logout,
 )
+from rarestudy.models.article import Article
 from rarestudy.forms import UserCreateForm, EditUserForm
 
 User = get_user_model()
@@ -15,11 +16,14 @@ class SignUpView(generic.CreateView):
     template_name = 'registration/signup.html'
 
 
-class ProfileView(LoginRequiredMixin, generic.View):
+class ProfileView(LoginRequiredMixin, generic.ListView):
+    model = Article
+    template_name = 'registration/profile.html'
+    context_object_name = 'Articles'
+    paginate_by = 10
 
-    def get(self, *args, **kwargs):
-        return render(self.request,'registration/profile.html')
-
+    def get_queryset(self):
+        return Article.objects.filter(user=self.request.user).filter(valid=True).order_by('-created_at')
 
 class DeleteView(LoginRequiredMixin, generic.View):
 
