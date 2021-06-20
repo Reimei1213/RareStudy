@@ -35,7 +35,7 @@ Created by ハッカソンチームA  at  [RareTech](https://raretech.site/)
 - [Shiny-a](https://github.com/shiny-a)
 
 ***
-##　機能
+## 機能
 *   メイン機能
     *   最新記事一覧表示
     *   記事の投稿
