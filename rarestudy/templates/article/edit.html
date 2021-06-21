@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+
+    <div class="container"> 
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <form action="" method="POST">
+                    {{ form.media }}
+                    <p>{{ form.title }}</p>
+                    <p>{{ form.body }}</p>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary mb-3">更新</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
