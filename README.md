@@ -18,7 +18,6 @@ Created by ハッカソンチームA  at  [RareTech](https://raretech.site/)
   - [使用技術](#使用技術)
   - [追加予定機能](#追加予定機能)
 
-***
 ## RareStudyとは
 **アウトプット記事を通して知識を共有するアプリケーションです。**
 * ターゲット
@@ -31,14 +30,12 @@ Created by ハッカソンチームA  at  [RareTech](https://raretech.site/)
     *   メンバー同士の交流
     *   文章構成力を身に付ける
 
-***
 ## 開発メンバー
 - [AOI](https://github.com/orang-0840)
 - [REIMEI](https://github.com/Reimei1213)
 - [RINA](https://github.com/Rinasham)　南半球在住、IT歴1.5ヶ月の初心者
 - [Shiny-a](https://github.com/shiny-a)
 
-***
 ## 機能
 *   メイン機能
     *   最新記事一覧表示
@@ -65,6 +62,8 @@ python manage.py migrate
 python manage.py runserver
 ```
 ## 使用技術
+![img](https://user-images.githubusercontent.com/84213832/122704212-90ba7c00-d296-11eb-86f3-88ec4f42be32.JPG)
+
 
 ## 追加予定機能
 - 検索機能
