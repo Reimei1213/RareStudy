@@ -32,15 +32,15 @@ Created by ハッカソンチームA  at  [RareTech](https://raretech.site/)
 
 ## 開発メンバー
 - [AOI](https://github.com/orang-0840)
-- [REIMEI](https://github.com/Reimei1213)
-- [RINA](https://github.com/Rinasham)　南半球在住、IT歴1.5ヶ月の初心者
+- [REIMEI](https://github.com/Reimei1213)   毎日がデスマの大学生
+- [RINA](https://github.com/Rinasham)   南半球在住IT初心者アラサー女
 - [Shiny-a](https://github.com/shiny-a)
 
 ## 機能
 *   メイン機能
     *   最新記事一覧表示
-    *   記事の投稿
-    *   コメント機能
+    *   記事の投稿/編集
+    *   コメント機能/編集
     *   プロフィールを設定/編集
     *   アカウント登録/削除
 *   サブ機能
@@ -62,7 +62,8 @@ python manage.py migrate
 python manage.py runserver
 ```
 ## 使用技術
-![img](https://user-images.githubusercontent.com/84213832/122704212-90ba7c00-d296-11eb-86f3-88ec4f42be32.JPG)
+![img](https://user-images.githubusercontent.com/84213832/122710005-ba79a000-d2a2-11eb-84f6-b5c5a2ca380b.JPG)
+
 
 
 ## 追加予定機能
