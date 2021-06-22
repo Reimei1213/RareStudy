@@ -27,4 +27,4 @@ class Edit(UpdateView):
     form_class = AddCommentForm
 
     def get_success_url(self):
-     return reverse('rarestudy:article/detail', kwargs={'pk':self.kwargs['pk']})
+     return reverse("rarestudy:article/detail", kwargs={'pk':Comment.objects.get(pk=self.kwargs['pk']).get_article().pk})
