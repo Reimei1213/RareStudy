@@ -31,7 +31,7 @@ Created by ハッカソンチームA  at  [RareTech](https://raretech.site/)
     *   文章構成力を身に付ける
 
 ## 開発メンバー
-- [AOI](https://github.com/orang-0840)
+- [AOI](https://github.com/orang-0840)  限界大学生
 - [REIMEI](https://github.com/Reimei1213)   毎日がデスマの大学生
 - [RINA](https://github.com/Rinasham)   南半球在住IT初心者アラサー女
 - [Shiny-a](https://github.com/shiny-a) 不器用なアラサー会社員
