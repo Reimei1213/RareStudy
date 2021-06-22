@@ -1,9 +1,15 @@
 {% extends "registration/base.html" %}
-
+{% load static %}
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col-lg-10 mx-auto">
+                <div class="d-flex align-items-center">
+                     <img src="{% static user.get_icon_path %}" alt="" width="40px" height="40px" class="mr-2">
+                    <p>{{ user.get_name }}</p>
+                </div>
+                {{user.get_degree}}
+                {{user.get_bio}}
                 {% for Article in Articles %}
                     <a href="{% url 'rarestudy:article/detail' Article.get_id %}" style="color:#333333;text-decoration:none;">
                         <div class="card my-4">
