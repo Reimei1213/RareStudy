@@ -34,7 +34,7 @@ Created by ハッカソンチームA  at  [RareTech](https://raretech.site/)
 - [AOI](https://github.com/orang-0840)
 - [REIMEI](https://github.com/Reimei1213)   毎日がデスマの大学生
 - [RINA](https://github.com/Rinasham)   南半球在住IT初心者アラサー女
-- [Shiny-a](https://github.com/shiny-a)
+- [Shiny-a](https://github.com/shiny-a) 不器用なアラサー会社員
 
 ## 機能
 *   メイン機能
@@ -57,6 +57,7 @@ Django 3.2.3
 ```
 git clone https://github.com/shiny-a/RareStudy.git
 cd RareStudy
+brew install mysql
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
