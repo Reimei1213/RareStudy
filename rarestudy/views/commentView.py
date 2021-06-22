@@ -5,7 +5,6 @@ from django.urls import reverse
 from rarestudy.models.article import Article
 from rarestudy.models.comment import Comment
 from rarestudy.forms import AddCommentForm
-from django.shortcuts import redirect
 
 class Add(LoginRequiredMixin, CreateView):
     template_name = 'comment/add.html'
