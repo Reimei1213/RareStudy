@@ -16,7 +16,7 @@
                     </a>
                     <div class="float-right">
                              {% if Article.get_user == user %}
-                             <a class="btn btn-primary mb-3" href="{% url 'rarestudy:article/edit' Article.pk %}">編集</a>
+                             <a class="btn btn-primary mb-3" href="{% url 'rarestudy:article/edit' Article.pk %}"><i class="fas fa-edit mr-1"></i>編集</a>
                              {% endif %}
                     </div>
                     <p class="small text-secondary">{{ Article.get_created_at }}</p>
@@ -32,6 +32,11 @@
                                 <div class="d-flex align-items-center">
                                     <img src="{% static Comment.get_user_icon_path %}" alt="" width="40px" height="40px" class="mr-2">
                                     <p>{{ Comment.get_user_name }}</p>
+                                </div>
+                                <div class="float-right">
+                                    {% if Comment.get_user == user %}
+                                    <a href="{% url 'rarestudy:comment/edit' Comment.pk %}" class="btn btn-primary mb-3"><i class="fas fa-edit mr-1"></i>編集</a>
+                                    {% endif %}                            
                                 </div>
                                 <p class="small text-secondary">{{ Comment.get_created_at }}</p>
                                 <p>{{ Comment.get_body | markdown | safe }}</p>
