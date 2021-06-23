@@ -21,7 +21,7 @@
                     </div>
                     <p class="small text-secondary">{{ Article.get_created_at }}</p>
                 </div>
-                <p>{{ Article.get_body | markdown | safe }}</p>
+                <p>{{ Article.get_body | markdown | safe | linebreaksbr }}</p>
                 <a href="https://twitter.com/share" class="twitter-share-button" data-text="RareStudyにて新しいアウトプットが投稿されました。" data-lang="ja" data-count="none" data-hashtags="RareTECH,RareStudy">Tweet Button</a>
             </div>
             <div class="col-lg-10 mx-auto">
@@ -39,7 +39,7 @@
                                     {% endif %}                            
                                 </div>
                                 <p class="small text-secondary">{{ Comment.get_created_at }}</p>
-                                <p>{{ Comment.get_body | markdown | safe }}</p>
+                                <p>{{ Comment.get_body | markdown | safe | linebreaksbr }}</p>
                             </div>
                         </div>
                     {% endfor %}
