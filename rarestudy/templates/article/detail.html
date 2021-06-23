@@ -39,7 +39,7 @@
                                     {% endif %}                            
                                 </div>
                                 <p class="small text-secondary">{{ Comment.get_created_at }}</p>
-                                <p>{{ Comment.get_body | markdown | safe }}</p>
+                                <p>{{ Comment.get_body | markdown | safe | linebreaksbr }}</p>
                             </div>
                         </div>
                     {% endfor %}
