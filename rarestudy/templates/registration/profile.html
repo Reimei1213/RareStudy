@@ -6,16 +6,12 @@
         <div class="col-lg-10 mx-auto">
             <div class="box2">
                 <h5 class="card-title text-center">プロフィール</h5>
-                <br>
                 <div class="d-flex align-items-center">
-                    <p style="line-height:2rem">
                     <table>
                         <tbody>
                             <tr>
                                 <th scope="row">名前</th>
-                                <td><img src="{% static user.get_icon_path %}" alt="" width="40px" height="40px"
-                                        class="mr-2">{{ user.get_name }}
-                                </td>
+                                <td style="text-indent: -3rem;"><img src="{% static user.get_icon_path %}" alt="" width="40px" height="40px" class="mr-2">{{ user.get_name }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">称号</th>
@@ -29,9 +25,8 @@
                     </table>
                     </p>
                 </div>
-                <br>
             </div>
-            <h5 class="text-left">＜記事一覧＞</h5>
+            <h5 class="text-left">&lt;記事一覧&gt;</h5>
             {% for Article in Articles %}
             <a href="{% url 'rarestudy:article/detail' Article.get_id %}" style="color:#333333;text-decoration:none;">
                 <div class="card my-4">
