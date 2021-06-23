@@ -9,7 +9,7 @@
 table{
     width: 100%;
     border-collapse: collapse;
-
+    word-break: break-all;
   }
 
   table th{
@@ -43,7 +43,7 @@ table{
   table td{
     white-space: pre-wrap;
     width: 70%;
-    text-align: center;
+    text-align: left;
     background-color: #eee;
     padding: 10px 30px;
   }
