@@ -60,6 +60,7 @@ cd RareStudy
 brew install mysql
 pip install -r requirements.txt
 python manage.py migrate
+# settings.pyのSECRET_KEYを入力
 python manage.py runserver
 ```
 ## 使用技術
